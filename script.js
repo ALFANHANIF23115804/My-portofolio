@@ -28,7 +28,7 @@ const projectDetails = {
   },
   coffee: {
     kicker: 'Experience notes / 04',
-    title: 'Coffeehouse craft',
+    title: 'Garasi Kopi',
     description: 'Hands-on hospitality experience across Coffeeshop AADK and Garasi Kopi, covering customer service, bar operations, raw-material inventory, espresso calibration, cashier work, and daily sales support.',
     role: 'Barista',
     focus: 'Service / operations',
