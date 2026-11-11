@@ -132,6 +132,69 @@ document.querySelector('.copy-email')?.addEventListener('click', async (event) =
   }
 });
 
+const certificateDetails = {
+  cert1: {
+    kicker: 'Certificate / 01',
+    title: 'Front-End Web Development',
+    description: 'Sertifikasi kompetensi pengembangan antarmuka web modern yang mencakup pembuatan layout responsif, arsitektur CSS, serta interaktivitas JavaScript.',
+    role: 'Dicoding / RevoU',
+    focus: 'Front-End Architecture',
+    year: '2026',
+    quote: 'Clean interfaces bridge complex business logic with effortless user journeys.'
+  },
+  cert2: {
+    kicker: 'Certificate / 02',
+    title: 'SQL & Relational Database Design',
+    description: 'Pelatihan intensif perancangan basis data relasional, pembuatan skema stok keluar-masuk, serta optimasi query untuk aplikasi skala menengah.',
+    role: 'Hacktiv8 / Coursera',
+    focus: 'Database / SQL',
+    year: '2026',
+    quote: 'Reliable operations start with a well-structured schema.'
+  },
+  cert3: {
+    kicker: 'Certificate / 03',
+    title: 'Full-Stack JavaScript & Web Systems',
+    description: 'Program penguasaan pengembangan aplikasi web menyeluruh mulai dari manajemen state, integrasi sistem pembayaran, hingga deployment.',
+    role: 'SE Masterclass',
+    focus: 'Full-Stack Web',
+    year: '2025',
+    quote: 'Building end-to-end systems that solve real daily operational bottlenecks.'
+  }
+};
+
+// Filter untuk kategori sertifikat
+document.querySelectorAll('.cert-filter-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.certFilter;
+    document.querySelectorAll('.cert-filter-button').forEach((item) => {
+      item.classList.toggle('is-active', item === button);
+    });
+    document.querySelectorAll('.cert-card').forEach((card) => {
+      const show = filter === 'all' || card.dataset.certCategory === filter;
+      card.classList.toggle('is-hidden', !show);
+    });
+  });
+});
+
+// Buka detail sertifikat menggunakan komponen modal yang sama
+document.querySelectorAll('[data-open-cert]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const cert = certificateDetails[button.dataset.openCert];
+    if (!cert) return;
+    document.querySelector('#modal-kicker').textContent = cert.kicker;
+    document.querySelector('#modal-title').textContent = cert.title;
+    document.querySelector('#modal-description').textContent = cert.description;
+    document.querySelector('#modal-role').textContent = cert.role;
+    document.querySelector('#modal-focus').textContent = cert.focus;
+    document.querySelector('#modal-year').textContent = cert.year;
+    document.querySelector('#modal-quote').textContent = cert.quote;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.querySelector('.modal-close')?.focus();
+    body.style.overflow = 'hidden';
+  });
+});
+
 document.querySelector('#year').textContent = String(new Date().getFullYear());
 
 const glow = document.querySelector('.cursor-glow');

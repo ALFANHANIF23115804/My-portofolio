@@ -28,6 +28,7 @@
         <div class="nav-links" id="nav-links">
           <a href="#about">Profile</a>
           <a href="#work">Selected work</a>
+          <a href="#certificates">Certificates</a>
           <a href="#experience">Experience</a>
           <a href="#contact">Contact</a>
         </div>
@@ -123,6 +124,7 @@
         </article>
       </section>
 
+      <!-- 02 / SELECTED WORK (PROJECTS) -->
       <section class="work shell section-pad" id="work" aria-labelledby="work-title">
         <div class="section-heading reveal">
           <div>
@@ -191,9 +193,68 @@
         <p class="work-footnote reveal"><span></span> More experiments are quietly loading.</p>
       </section>
 
+      <!-- 03 / CERTIFICATES SECTION BARU -->
+      <section class="certificates shell section-pad" id="certificates" aria-labelledby="certificates-title">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-number">03 / Credentials</p>
+            <h2 id="certificates-title">Licenses &amp;<br /><span>certificates.</span></h2>
+          </div>
+          <p class="section-aside">Verified training and technical certifications across web development, software engineering, and databases.</p>
+        </div>
+
+        <div class="cert-filter-row reveal" role="tablist" aria-label="Filter certificates">
+          <button class="cert-filter-button is-active" type="button" data-cert-filter="all" role="tab" aria-selected="true">All <span>03</span></button>
+          <button class="cert-filter-button" type="button" data-cert-filter="dev" role="tab" aria-selected="false">Web &amp; Software <span>02</span></button>
+          <button class="cert-filter-button" type="button" data-cert-filter="data" role="tab" aria-selected="false">Data &amp; Systems <span>01</span></button>
+        </div>
+
+        <div class="cert-grid">
+          <article class="cert-card reveal" data-cert-category="dev">
+            <div class="cert-top">
+              <span class="cert-badge">Front-End</span>
+              <span class="cert-year">Oct 2025</span>
+            </div>
+            <h3>Front-End Web <em>Development</em></h3>
+            <p class="cert-issuer">Dicoding Indonesia · RevoU</p>
+            <p class="cert-desc">Responsive web interfaces, modern DOM manipulation, component architecture, and web accessibility.</p>
+            <div class="cert-footer">
+              <button class="text-link" type="button" data-open-cert="cert1">View credential notes <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="cert-card reveal reveal-delay-short" data-cert-category="data">
+            <div class="cert-top">
+              <span class="cert-badge">Database &amp; SQL</span>
+              <span class="cert-year">Sep 2025</span>
+            </div>
+            <h3>SQL &amp; Relational <em>Database Design</em></h3>
+            <p class="cert-issuer">Hacktiv8 Indonesia · Coursera</p>
+            <p class="cert-desc">Relational schema design, database normalization, real-time inventory query optimization, and data modeling.</p>
+            <div class="cert-footer">
+              <button class="text-link" type="button" data-open-cert="cert2">View credential notes <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="cert-card reveal reveal-delay" data-cert-category="dev">
+            <div class="cert-top">
+              <span class="cert-badge">Software Engineering</span>
+              <span class="cert-year">Aug 2025</span>
+            </div>
+            <h3>Full-Stack JavaScript <em>&amp; Web Systems</em></h3>
+            <p class="cert-issuer">RevoU Masterclass</p>
+            <p class="cert-desc">End-to-end web system architecture, payment flow integration, state management, and deployment workflows.</p>
+            <div class="cert-footer">
+              <button class="text-link" type="button" data-open-cert="cert3">View credential notes <span>↗</span></button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 04 / EXPERIENCE & TRAINING -->
       <section class="experience shell section-pad" id="experience" aria-labelledby="experience-title">
         <div class="section-intro reveal">
-          <p class="section-number">03 / Experience &amp; training</p>
+          <p class="section-number">04 / Experience &amp; training</p>
           <h2 id="experience-title">Built between<br /><span>code &amp; care.</span></h2>
         </div>
         <div class="experience-content reveal reveal-delay">
@@ -216,10 +277,11 @@
         </div>
       </section>
 
+      <!-- 05 / CONTACT -->
       <section class="contact shell section-pad" id="contact" aria-labelledby="contact-title">
         <div class="contact-panel reveal">
           <div class="contact-copy">
-            <p class="section-number">04 / Say hello</p>
+            <p class="section-number">05 / Say hello</p>
             <h2 id="contact-title">Have a good<br /><em>question?</em></h2>
             <p>For a project, a collaboration, or a conversation about the space between design and technology — I’d love to hear from you.</p>
           </div>
@@ -250,7 +312,7 @@
         <h2 id="modal-title">Project title</h2>
         <p id="modal-description"></p>
         <div class="modal-details">
-          <div><span>Role</span><strong id="modal-role"></strong></div>
+          <div><span>Role / Issuer</span><strong id="modal-role"></strong></div>
           <div><span>Focus</span><strong id="modal-focus"></strong></div>
           <div><span>Year</span><strong id="modal-year"></strong></div>
         </div>
