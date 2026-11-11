@@ -18,31 +18,31 @@ const projectDetails = {
     quote: 'A useful system turns a pile of daily updates into one clear next move.',
     images: [
       {
-        src: 'Screenshot 2026-07-31 215621.jpg',
+        src: 'Screenshot 2026-07-31 215621.png',
         caption: '01 / Dashboard Owner — Ringkasan bulanan, arus keuangan, persediaan & rekap otomatis'
       },
       {
-        src: 'Screenshot 2026-08-01 172221.jpg',
+        src: 'Screenshot 2026-08-01 172221.png',
         caption: '02 / Live Operational Overview & Owner Control Center'
       },
       {
-        src: 'Screenshot 2026-07-31 215536.jpg',
+        src: 'Screenshot 2026-07-31 215536.png  ',
         caption: '03 / Owner Login — Sistem autentikasi akses pemilik via tautan email'
       },
       {
-        src: 'Screenshot 2026-07-31 215703.jpg',
+        src: 'Gambar/Screenshot 2026-07-31 215536.png',
         caption: '04 / Menu Barang — Tambah stok barang & pemantauan nilai persediaan'
       },
       {
-        src: 'Screenshot 2026-07-31 215719.jpg',
+        src: 'Screenshot 2026-07-31 215719.png',
         caption: '05 / Menu Keuangan — Pencatatan pemasukan, pengeluaran & riwayat transaksi'
       },
       {
-        src: 'Screenshot 2026-07-31 215747.jpg',
+        src: 'Screenshot 2026-07-31 215747.png',
         caption: '06 / Menu Penggajian — Manajemen karyawan, pembayaran gaji & riwayat penggajian'
       },
       {
-        src: 'Screenshot 2026-07-31 212455.jpg',
+        src: 'Screenshot 2026-07-31 212455.png',
         caption: '07 / Financial Analytics & Metrics Dashboard UI'
       }
     ]
