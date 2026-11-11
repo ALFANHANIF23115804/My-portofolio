@@ -153,17 +153,17 @@
             <button class="text-link" type="button" data-open-project="getuk">View project notes <span>↗</span></button>
           </article>
 
-          <article class="project-card reveal reveal-delay-short" data-category="web" data-project="bengkel">
+          <!-- Card 2: Bengkel Gamer (Dilengkapi pratinjau gambar & bisa diklik langsung) -->
+          <article class="project-card reveal reveal-delay-short" data-category="web" data-project="bengkel" data-open-project="bengkel">
             <div class="project-art art-sentiment">
-              <div class="signal-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              <div class="art-chip">FULL STACK</div>
-              <div class="art-word">bengkel<br /><span>gamer.</span></div>
+              <img class="project-photo" src="Screenshot 2026-07-31 215621.jpg" alt="Dashboard Bengkel Gamer" />
+              <span class="project-photo-chip">BENGKEL GAMER / LIVE SYSTEM</span>
               <span class="art-caption">SYSTEMS / 2026</span>
             </div>
             <div class="project-meta"><span>02 — Full-stack developer</span><span>Aug–Sep 2026</span></div>
             <h3>Bengkel <em>Gamer</em></h3>
             <p>Full-stack website and database architecture for workshop operations, gear sales, and real-time stock flow.</p>
-            <button class="text-link" type="button" data-open-project="bengkel">Read project notes <span>↗</span></button>
+            <button class="text-link" type="button" data-open-project="bengkel">Lihat hasil &amp; detail project <span>↗</span></button>
           </article>
 
           <article class="project-card reveal" data-category="web" data-project="risol">
@@ -311,6 +311,16 @@
         <p class="section-number" id="modal-kicker">Project notes</p>
         <h2 id="modal-title">Project title</h2>
         <p id="modal-description"></p>
+
+        <!-- Galeri Bukti Hasil Project -->
+        <div class="modal-gallery" id="modal-gallery" hidden>
+          <div class="modal-gallery-main">
+            <img id="modal-active-img" src="" alt="Screenshot hasil project" />
+            <span class="modal-img-caption" id="modal-img-caption"></span>
+          </div>
+          <div class="modal-gallery-thumbs" id="modal-gallery-thumbs" aria-label="Pilih screenshot"></div>
+        </div>
+
         <div class="modal-details">
           <div><span>Role / Issuer</span><strong id="modal-role"></strong></div>
           <div><span>Focus</span><strong id="modal-focus"></strong></div>
