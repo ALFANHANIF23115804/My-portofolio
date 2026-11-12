@@ -277,3 +277,42 @@ document.querySelectorAll('[data-open-project]').forEach((element) => {
 
 document.querySelectorAll('[data-open-cert]').forEach((button) => {
   button.addEventListener('click', () => {
+    populateAndOpenModal(certificateDetails[button.dataset.openCert]);
+  });
+});
+
+document.querySelectorAll('[data-close-modal]').forEach((element) => element.addEventListener('click', closeProject));
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && modal.classList.contains('is-open')) closeProject();
+});
+
+document.querySelector('.copy-email')?.addEventListener('click', async (event) => {
+  const email = event.currentTarget.dataset.email;
+  try {
+    await navigator.clipboard.writeText(email);
+    toast.textContent = `${email} copied to clipboard.`;
+    toast.classList.add('is-visible');
+    window.setTimeout(() => toast.classList.remove('is-visible'), 2200);
+  } catch {
+    window.location.href = `mailto:${email}`;
+  }
+});
+
+document.querySelector('#year').textContent = String(new Date().getFullYear());
+
+const glow = document.querySelector('.cursor-glow');
+window.addEventListener('pointermove', (event) => {
+  glow.style.left = `${event.clientX}px`;
+  glow.style.top = `${event.clientY}px`;
+});
+
+const sections = [...document.querySelectorAll('main section[id]')];
+const links = [...document.querySelectorAll('.nav-links a')];
+const activeSectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      links.forEach((link) => link.classList.toggle('is-current', link.getAttribute('href') === `#${entry.target.id}`));
+    }
+  });
+}, { rootMargin: '-35% 0px -55% 0px' });
+sections.forEach((section) => activeSectionObserver.observe(section));
