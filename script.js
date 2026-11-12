@@ -13,7 +13,7 @@ const projectDetails = {
         caption: '01 / Landing Page & Pricelist — Tampilan utama website Getuk Gondok Hj. Sri Rahayu'
       },
       {
-        src: 'Gambar/2026-05-20 (5).png',
+        src: 'Gambar2/2026-05-20 (5).png',
         caption: '02 / Katalog Produk — Fitur pencarian, filter kategori (Traditional, Premium, Box, Deluxe) & floating bar'
       },
       {
