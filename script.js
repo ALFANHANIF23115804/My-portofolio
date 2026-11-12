@@ -6,7 +6,29 @@ const projectDetails = {
     role: 'Front-end developer',
     focus: 'E-commerce / systems',
     year: 'Jun–Jul 2026',
-    quote: 'The best interface is the one that lets the owner focus on the business, not the dashboard.'
+    quote: 'The best interface is the one that lets the owner focus on the business, not the dashboard.',
+    images: [
+      {
+        src: 'Gambar/Capture.PNG',
+        caption: '01 / Dashboard Owner — Ringkasan bulanan, arus keuangan, persediaan & rekap otomatis'
+      },
+      {
+        src: 'Gambar/WhatsApp Image 2026-11-12 at 14.50.29.jpeg',
+        caption: '02 / Live Operational Overview & Owner Control Center'
+      },
+      {
+        src: 'GGambar/WhatsApp Image 2026-11-12 at 14.50.30.jpeg  ',
+        caption: '03 / Owner Login — Sistem autentikasi akses pemilik via tautan email'
+      },
+      {
+        src: 'Gambar/WhatsApp Image 2026-11-12 at 14.50.33.jpeg',
+        caption: '04 / Menu Barang — Tambah stok barang & pemantauan nilai persediaan'
+      },
+      {
+        src: 'Gambar/WhatsApp Image 2026-11-12 at 14.50.31.jpeg',
+        caption: '05 / Menu Keuangan — Pencatatan pemasukan, pengeluaran & riwayat transaksi'
+      }
+    ]
   },
   bengkel: {
     kicker: 'Project notes / 02',
