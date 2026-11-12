@@ -2,31 +2,47 @@ const projectDetails = {
   getuk: {
     kicker: 'Project notes / 01',
     title: 'Getuk Gondok',
-    description: 'A responsive souvenir e-commerce experience built for a local business in Magelang, connecting an easy-to-navigate interface with product management, stock tracking, financial recap, and digital payment flow.',
+    description: 'A responsive souvenir e-commerce experience built for Getuk Gondok Hj. Sri Rahayu in Magelang, connecting an easy-to-navigate catalog with category filtering, interactive shopping cart, pickup location selection, and direct order flow.',
     role: 'Front-end developer',
-    focus: 'E-commerce / systems',
+    focus: 'E-commerce / UI systems',
     year: 'Jun–Jul 2026',
     quote: 'The best interface is the one that lets the owner focus on the business, not the dashboard.',
     images: [
       {
-        src: 'Gambar/Capture.PNG',
-        caption: '01 / Dashboard Owner — Ringkasan bulanan, arus keuangan, persediaan & rekap otomatis'
+        src: 'WhatsApp Image 2026-11-12 at 14.50.30.jpeg',
+        caption: '01 / Hero Section — Tampilan utama website Getuk Gondok Hj. Sri Rahayu & slider produk'
       },
       {
-        src: 'Gambar/WhatsApp Image 2026-11-12 at 14.50.29.jpeg',
-        caption: '02 / Live Operational Overview & Owner Control Center'
+        src: '2026-05-20.png',
+        caption: '02 / Landing Page & Pricelist — Informasi harga kemasan dan kontak operasional'
       },
       {
-        src: 'GGambar/WhatsApp Image 2026-11-12 at 14.50.30.jpeg  ',
-        caption: '03 / Owner Login — Sistem autentikasi akses pemilik via tautan email'
+        src: '2026-05-20 (5).png',
+        caption: '03 / Katalog Produk — Fitur pencarian, filter kategori & floating bar'
       },
       {
-        src: 'Gambar/WhatsApp Image 2026-11-12 at 14.50.33.jpeg',
-        caption: '04 / Menu Barang — Tambah stok barang & pemantauan nilai persediaan'
+        src: 'WhatsApp Image 2026-11-12 at 14.50.29.jpeg',
+        caption: '04 / Ringkasan Pesanan & Keranjang — Kalkulasi harga otomatis dan lokasi pengambilan'
       },
       {
-        src: 'Gambar/WhatsApp Image 2026-11-12 at 14.50.31.jpeg',
-        caption: '05 / Menu Keuangan — Pencatatan pemasukan, pengeluaran & riwayat transaksi'
+        src: 'WhatsApp Image 2026-11-12 at 14.50.31.jpeg',
+        caption: '05 / Section Keunggulan — Informasi nilai produk & standar kualitas'
+      },
+      {
+        src: 'WhatsApp Image 2026-11-12 at 14.50.32.jpeg',
+        caption: '06 / Section Testimoni Pelanggan — Ulasan pembeli terhadap produk Getuk Gondok'
+      },
+      {
+        src: 'WhatsApp Image 2026-11-12 at 14.50.33.jpeg',
+        caption: '07 / FAQ & Footer — Pertanyaan umum interaktif, jam operasional & tombol WhatsApp'
+      },
+      {
+        src: 'Capture.png',
+        caption: '08 / Struktur Navigasi Katalog — Pemetaan alur klik dari header menu menuju katalog produk'
+      },
+      {
+        src: 'getuk-gondok.jpg',
+        caption: '09 / Brand Identity — Logo asli Getuk Gondok Hj. Sri Rahayu'
       }
     ]
   },
@@ -40,28 +56,32 @@ const projectDetails = {
     quote: 'A useful system turns a pile of daily updates into one clear next move.',
     images: [
       {
-        src: 'Gambar/Screenshot 2026-07-31 215621.png',
+        src: 'Screenshot 2026-07-31 215621.png',
         caption: '01 / Dashboard Owner — Ringkasan bulanan, arus keuangan, persediaan & rekap otomatis'
       },
       {
-        src: 'Gambar/Screenshot 2026-08-01 172221.png',
+        src: 'Screenshot 2026-08-01 172221.png',
         caption: '02 / Live Operational Overview & Owner Control Center'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215536.png  ',
+        src: 'Screenshot 2026-07-31 215536.png',
         caption: '03 / Owner Login — Sistem autentikasi akses pemilik via tautan email'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215536.png',
+        src: 'Screenshot 2026-07-31 215703.png',
         caption: '04 / Menu Barang — Tambah stok barang & pemantauan nilai persediaan'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215719.png',
+        src: 'Screenshot 2026-07-31 215719.png',
         caption: '05 / Menu Keuangan — Pencatatan pemasukan, pengeluaran & riwayat transaksi'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215747.png',
+        src: 'Screenshot 2026-07-31 215747.png',
         caption: '06 / Menu Penggajian — Manajemen karyawan, pembayaran gaji & riwayat penggajian'
+      },
+      {
+        src: 'Screenshot 2026-07-31 212455.png',
+        caption: '07 / Financial Analytics & Metrics Dashboard UI'
       }
     ]
   },
@@ -190,6 +210,22 @@ document.querySelectorAll('.cert-filter-button').forEach((button) => {
   });
 });
 
+function applyImageWithFallback(imgElement, srcPath) {
+  const extensions = ['.png', '.jpg', '.jpeg'];
+  const basePath = srcPath.replace(/\.(png|jpe?g)$/i, '');
+  let attempt = 0;
+
+  imgElement.onerror = () => {
+    if (attempt < extensions.length) {
+      imgElement.src = encodeURI(basePath + extensions[attempt]);
+      attempt++;
+    } else {
+      imgElement.onerror = null;
+    }
+  };
+  imgElement.src = encodeURI(srcPath);
+}
+
 function renderModalGallery(images) {
   if (!modalGallery || !modalActiveImg || !modalImgCaption || !modalGalleryThumbs) return;
 
@@ -202,8 +238,8 @@ function renderModalGallery(images) {
 
   modalGallery.hidden = false;
   modalCard?.classList.add('has-gallery');
-  modalActiveImg.src = images[0].src;
   modalActiveImg.alt = images[0].caption;
+  applyImageWithFallback(modalActiveImg, images[0].src);
   modalImgCaption.textContent = images[0].caption;
 
   modalGalleryThumbs.innerHTML = '';
@@ -211,11 +247,16 @@ function renderModalGallery(images) {
     const thumbBtn = document.createElement('button');
     thumbBtn.type = 'button';
     thumbBtn.className = `modal-thumb-btn${index === 0 ? ' is-active' : ''}`;
-    thumbBtn.innerHTML = `<img src="${imgData.src}" alt="${imgData.caption}" />`;
+
+    const thumbImg = document.createElement('img');
+    thumbImg.alt = imgData.caption;
+    applyImageWithFallback(thumbImg, imgData.src);
+    thumbBtn.appendChild(thumbImg);
+
     thumbBtn.addEventListener('click', (event) => {
       event.stopPropagation();
-      modalActiveImg.src = imgData.src;
       modalActiveImg.alt = imgData.caption;
+      applyImageWithFallback(modalActiveImg, imgData.src);
       modalImgCaption.textContent = imgData.caption;
       modalGalleryThumbs.querySelectorAll('.modal-thumb-btn').forEach((btn) => btn.classList.remove('is-active'));
       thumbBtn.classList.add('is-active');
