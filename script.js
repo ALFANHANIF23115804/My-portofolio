@@ -27,6 +27,27 @@ const projectDetails = {
       {
         src: 'getuk-gondok.jpg',
         caption: '05 / Brand Identity — Logo asli Getuk Gondok Hj. Sri Rahayu'
+      },
+      {
+        src: 'Gambar2/WhatsApp Image 2026-11-12 at 14.50.30.jpeg',
+        altSrcs: ['Gambar2/WhatsApp Image 2026-11-12.png'],
+        caption: '06 / Hero Section — Slider produk tumpeng Getuk Gondok'
+      },
+      {
+        src: 'Gambar2/WhatsApp Image 2026-11-12 at 14.50.29.jpeg',
+        caption: '07 / Ringkasan Pesanan & Keranjang — Kalkulasi harga otomatis dan lokasi pengambilan'
+      },
+      {
+        src: 'Gambar2/WhatsApp Image 2026-11-12 at 14.50.31.jpeg',
+        caption: '08 / Section Keunggulan — Informasi nilai produk & standar kualitas'
+      },
+      {
+        src: 'Gambar2/WhatsApp Image 2026-11-12 at 14.50.32.jpeg',
+        caption: '09 / Section Testimoni Pelanggan — Ulasan pembeli terhadap produk Getuk Gondok'
+      },
+      {
+        src: 'Gambar2/WhatsApp Image 2026-11-12 at 14.50.33.jpeg',
+        caption: '10 / FAQ & Footer — Pertanyaan umum interaktif, jam operasional & integrasi WhatsApp'
       }
     ]
   },
@@ -40,24 +61,37 @@ const projectDetails = {
     quote: 'A useful system turns a pile of daily updates into one clear next move.',
     images: [
       {
-        src: 'Gambar/Screenshot 2026-07-31 215621.png',
+        src: 'Gambar2/Screenshot 2026-07-31 215621.png',
         caption: '01 / Dashboard Owner — Ringkasan bulanan, arus keuangan, persediaan & rekap otomatis'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215536.png',
+        src: 'Gambar2/Screenshot 2026-07-31 215536.png',
         caption: '02 / Owner Login — Sistem autentikasi akses pemilik via tautan email'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215703.png',
+        src: 'Gambar2/Screenshot 2026-07-31 215703.png',
         caption: '03 / Menu Barang — Tambah stok barang & pemantauan nilai persediaan'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215719.png',
+        src: 'Gambar2/Screenshot 2026-07-31 215719.png',
+        altSrcs: ['Gambar2/Screenshot 2026-07-31 215719 - Copy.png'],
         caption: '04 / Menu Keuangan — Pencatatan pemasukan, pengeluaran & riwayat transaksi'
       },
       {
-        src: 'Gambar/Screenshot 2026-07-31 215747 - Copy (2).png',
+        src: 'Gambar2/Screenshot 2026-07-31 215747.png',
+        altSrcs: [
+          'Gambar2/Screenshot 2026-07-31 215747 - Copy (2).png',
+          'Gambar2/Screenshot 2026-07-31 215747 - Copy.png'
+        ],
         caption: '05 / Menu Penggajian — Manajemen karyawan, pembayaran gaji & riwayat penggajian'
+      },
+      {
+        src: 'Gambar2/Screenshot 2026-08-01 172221.png',
+        caption: '06 / Live Operational Overview & Owner Control Center'
+      },
+      {
+        src: 'Gambar2/Screenshot 2026-07-31 212455.png',
+        caption: '07 / Financial Analytics & Metrics Dashboard UI'
       }
     ]
   },
@@ -202,6 +236,48 @@ document.querySelectorAll('.cert-filter-button').forEach((button) => {
   });
 });
 
+function buildCandidatePaths(srcPath, altSrcs = []) {
+  const allSeeds = [srcPath, ...altSrcs];
+  const folders = ['Gambar2/', 'gambar2/', 'Gambar/', 'gambar/', ''];
+  const extensions = ['.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG'];
+  const candidates = [];
+
+  allSeeds.forEach((seed) => {
+    if (!seed) return;
+    candidates.push(seed);
+    const cleanName = seed.replace(/^(Gambar2|gambar2|Gambar|gambar|images|img|assets)\//i, '');
+    const basePath = cleanName.replace(/\.(png|jpe?g)$/i, '');
+    const origExt = (cleanName.match(/\.(png|jpe?g)$/i) || ['', '.png'])[0];
+    const orderedExts = [...new Set([origExt, ...extensions])];
+
+    folders.forEach((folder) => {
+      candidates.push(folder + cleanName);
+      orderedExts.forEach((ext) => {
+        candidates.push(folder + basePath + ext);
+      });
+    });
+  });
+
+  return [...new Set(candidates)];
+}
+
+function applyImageWithFallback(imgElement, srcPath, altSrcs = [], onFailCallback = null) {
+  const uniqueCandidates = buildCandidatePaths(srcPath, altSrcs);
+  let index = 0;
+
+  imgElement.onerror = () => {
+    index++;
+    if (index < uniqueCandidates.length) {
+      imgElement.src = encodeURI(uniqueCandidates[index]);
+    } else {
+      imgElement.onerror = null;
+      if (typeof onFailCallback === 'function') onFailCallback(srcPath);
+    }
+  };
+
+  imgElement.src = encodeURI(uniqueCandidates[0]);
+}
+
 function renderModalGallery(images) {
   if (!modalGallery || !modalActiveImg || !modalImgCaption || !modalGalleryThumbs) return;
 
@@ -216,9 +292,9 @@ function renderModalGallery(images) {
   modalCard?.classList.add('has-gallery');
 
   const showImage = (imgData) => {
-    modalActiveImg.src = encodeURI(imgData.src);
     modalActiveImg.alt = imgData.caption;
     modalImgCaption.textContent = imgData.caption;
+    applyImageWithFallback(modalActiveImg, imgData.src, imgData.altSrcs || []);
   };
 
   showImage(images[0]);
@@ -230,8 +306,17 @@ function renderModalGallery(images) {
     thumbBtn.className = `modal-thumb-btn${index === 0 ? ' is-active' : ''}`;
 
     const thumbImg = document.createElement('img');
-    thumbImg.src = encodeURI(imgData.src);
     thumbImg.alt = imgData.caption;
+
+    applyImageWithFallback(
+      thumbImg,
+      imgData.src,
+      imgData.altSrcs || [],
+      () => {
+        thumbBtn.style.display = 'none';
+      }
+    );
+
     thumbBtn.appendChild(thumbImg);
 
     thumbBtn.addEventListener('click', (event) => {
