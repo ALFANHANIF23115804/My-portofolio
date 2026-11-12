@@ -9,40 +9,40 @@ const projectDetails = {
     quote: 'The best interface is the one that lets the owner focus on the business, not the dashboard.',
     images: [
       {
+        src: 'getuk-gondok.jpg',
+        caption: '01 / Brand Identity — Logo asli Getuk Gondok Hj. Sri Rahayu'
+      },
+      {
         src: 'WhatsApp Image 2026-11-12 at 14.50.30.jpeg',
-        caption: '01 / Hero Section — Tampilan utama website Getuk Gondok Hj. Sri Rahayu & slider produk'
+        caption: '02 / Hero Section — Tampilan utama website Getuk Gondok Hj. Sri Rahayu & slider produk'
       },
       {
         src: '2026-05-20.png',
-        caption: '02 / Landing Page & Pricelist — Informasi harga kemasan dan kontak operasional'
+        caption: '03 / Landing Page & Pricelist — Informasi harga kemasan dan kontak operasional'
       },
       {
         src: '2026-05-20 (5).png',
-        caption: '03 / Katalog Produk — Fitur pencarian, filter kategori & floating bar'
+        caption: '04 / Katalog Produk — Fitur pencarian, filter kategori (Traditional, Premium, Box, Deluxe) & floating bar'
       },
       {
         src: 'WhatsApp Image 2026-11-12 at 14.50.29.jpeg',
-        caption: '04 / Ringkasan Pesanan & Keranjang — Kalkulasi harga otomatis dan lokasi pengambilan'
+        caption: '05 / Ringkasan Pesanan & Keranjang — Kalkulasi harga otomatis dan pemilihan lokasi pengambilan'
       },
       {
         src: 'WhatsApp Image 2026-11-12 at 14.50.31.jpeg',
-        caption: '05 / Section Keunggulan — Informasi nilai produk & standar kualitas'
+        caption: '06 / Section Keunggulan — Informasi nilai produk & standar kualitas kepada pelanggan'
       },
       {
         src: 'WhatsApp Image 2026-11-12 at 14.50.32.jpeg',
-        caption: '06 / Section Testimoni Pelanggan — Ulasan pembeli terhadap produk Getuk Gondok'
+        caption: '07 / Section Testimoni Pelanggan — Ulasan pembeli terhadap produk Getuk Gondok'
       },
       {
         src: 'WhatsApp Image 2026-11-12 at 14.50.33.jpeg',
-        caption: '07 / FAQ & Footer — Pertanyaan umum interaktif, jam operasional & tombol WhatsApp'
+        caption: '08 / FAQ & Footer — Pertanyaan umum interaktif, jam operasional & tombol cepat WhatsApp'
       },
       {
         src: 'Capture.png',
-        caption: '08 / Struktur Navigasi Katalog — Pemetaan alur klik dari header menu menuju katalog produk'
-      },
-      {
-        src: 'getuk-gondok.jpg',
-        caption: '09 / Brand Identity — Logo asli Getuk Gondok Hj. Sri Rahayu'
+        caption: '09 / Struktur Navigasi Katalog — Pemetaan alur klik dari header menu menuju katalog produk'
       }
     ]
   },
@@ -92,7 +92,13 @@ const projectDetails = {
     role: 'Front-end developer',
     focus: 'Sales / payment flow',
     year: 'May–Jun 2025',
-    quote: 'Good product thinking starts where a customer question meets an operational reality.'
+    quote: 'Good product thinking starts where a customer question meets an operational reality.',
+    images: [
+      {
+        src: 'risol-primadona.jpeg',
+        caption: '01 / Risol Primadona — Brand Identity & Culinary Sales Website'
+      }
+    ]
   },
   coffee: {
     kicker: 'Experience notes / 04',
@@ -101,7 +107,17 @@ const projectDetails = {
     role: 'Barista',
     focus: 'Service / operations',
     year: 'Early 2021–late 2022',
-    quote: 'Careful service is a system too — it just happens one person at a time.'
+    quote: 'Careful service is a system too — it just happens one person at a time.',
+    images: [
+      {
+        src: 'garasi-kopi.jpeg',
+        caption: '01 / Garasi Kopi — Barista & Daily Operations'
+      },
+      {
+        src: 'aadk-logo.jpeg',
+        caption: '02 / Coffeeshop AADK — Service, Inventory & Cashier Operations'
+      }
+    ]
   }
 };
 
@@ -210,20 +226,33 @@ document.querySelectorAll('.cert-filter-button').forEach((button) => {
   });
 });
 
-function applyImageWithFallback(imgElement, srcPath) {
+function applyImageWithFallback(imgElement, srcPath, onFailCallback) {
   const extensions = ['.png', '.jpg', '.jpeg'];
+  const folders = ['', 'images/', 'img/', 'assets/'];
   const basePath = srcPath.replace(/\.(png|jpe?g)$/i, '');
-  let attempt = 0;
+  const candidates = [];
+
+  folders.forEach((folder) => {
+    candidates.push(folder + srcPath);
+    extensions.forEach((ext) => {
+      candidates.push(folder + basePath + ext);
+    });
+  });
+
+  const uniqueCandidates = [...new Set(candidates)];
+  let index = 0;
 
   imgElement.onerror = () => {
-    if (attempt < extensions.length) {
-      imgElement.src = encodeURI(basePath + extensions[attempt]);
-      attempt++;
+    index++;
+    if (index < uniqueCandidates.length) {
+      imgElement.src = encodeURI(uniqueCandidates[index]);
     } else {
       imgElement.onerror = null;
+      if (typeof onFailCallback === 'function') onFailCallback(srcPath);
     }
   };
-  imgElement.src = encodeURI(srcPath);
+
+  imgElement.src = encodeURI(uniqueCandidates[0]);
 }
 
 function renderModalGallery(images) {
@@ -238,9 +267,16 @@ function renderModalGallery(images) {
 
   modalGallery.hidden = false;
   modalCard?.classList.add('has-gallery');
-  modalActiveImg.alt = images[0].caption;
-  applyImageWithFallback(modalActiveImg, images[0].src);
-  modalImgCaption.textContent = images[0].caption;
+
+  const showImage = (imgData) => {
+    modalActiveImg.alt = imgData.caption;
+    modalImgCaption.textContent = imgData.caption;
+    applyImageWithFallback(modalActiveImg, imgData.src, (missingFile) => {
+      modalImgCaption.textContent = `${imgData.caption} — (Catatan: File "${missingFile}" belum dipindahkan ke folder yang sama dengan index.html)`;
+    });
+  };
+
+  showImage(images[0]);
 
   modalGalleryThumbs.innerHTML = '';
   images.forEach((imgData, index) => {
@@ -255,9 +291,7 @@ function renderModalGallery(images) {
 
     thumbBtn.addEventListener('click', (event) => {
       event.stopPropagation();
-      modalActiveImg.alt = imgData.caption;
-      applyImageWithFallback(modalActiveImg, imgData.src);
-      modalImgCaption.textContent = imgData.caption;
+      showImage(imgData);
       modalGalleryThumbs.querySelectorAll('.modal-thumb-btn').forEach((btn) => btn.classList.remove('is-active'));
       thumbBtn.classList.add('is-active');
     });
