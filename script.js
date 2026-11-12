@@ -9,7 +9,7 @@ const projectDetails = {
     quote: 'The best interface is the one that lets the owner focus on the business, not the dashboard.',
     images: [
       {
-        src: 'Gambar/2026-05-20.png',
+        src: 'Gambar2/2026-05-20.png',
         caption: '01 / Landing Page & Pricelist — Tampilan utama website Getuk Gondok Hj. Sri Rahayu'
       },
       {
@@ -17,11 +17,11 @@ const projectDetails = {
         caption: '02 / Katalog Produk — Fitur pencarian, filter kategori (Traditional, Premium, Box, Deluxe) & floating bar'
       },
       {
-        src: 'Gambar/2026-05-20 (4).png',
+        src: 'Gambar2/2026-05-20 (4).png',
         caption: '03 / Tampilan E-Commerce & Katalog Produk Getuk Gondok'
       },
       {
-        src: 'Gambar/Capture.PNG',
+        src: 'Gambar2/Capture.PNG',
         caption: '04 / Struktur Navigasi Katalog — Pemetaan alur klik dari header menu menuju katalog produk'
       },
       {
