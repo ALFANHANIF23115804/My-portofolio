@@ -9,40 +9,24 @@ const projectDetails = {
     quote: 'The best interface is the one that lets the owner focus on the business, not the dashboard.',
     images: [
       {
+        src: 'Gambar/2026-05-20.png',
+        caption: '01 / Landing Page & Pricelist — Tampilan utama website Getuk Gondok Hj. Sri Rahayu'
+      },
+      {
+        src: 'Gambar/2026-05-20 (5).png',
+        caption: '02 / Katalog Produk — Fitur pencarian, filter kategori (Traditional, Premium, Box, Deluxe) & floating bar'
+      },
+      {
+        src: 'Gambar/2026-05-20 (4).png',
+        caption: '03 / Tampilan E-Commerce & Katalog Produk Getuk Gondok'
+      },
+      {
+        src: 'Gambar/Capture.PNG',
+        caption: '04 / Struktur Navigasi Katalog — Pemetaan alur klik dari header menu menuju katalog produk'
+      },
+      {
         src: 'getuk-gondok.jpg',
-        caption: '01 / Brand Identity — Logo asli Getuk Gondok Hj. Sri Rahayu'
-      },
-      {
-        src: 'WhatsApp Image 2026-11-12 at 14.50.30.jpeg',
-        caption: '02 / Hero Section — Tampilan utama website Getuk Gondok Hj. Sri Rahayu & slider produk'
-      },
-      {
-        src: '2026-05-20.png',
-        caption: '03 / Landing Page & Pricelist — Informasi harga kemasan dan kontak operasional'
-      },
-      {
-        src: '2026-05-20 (5).png',
-        caption: '04 / Katalog Produk — Fitur pencarian, filter kategori (Traditional, Premium, Box, Deluxe) & floating bar'
-      },
-      {
-        src: 'WhatsApp Image 2026-11-12 at 14.50.29.jpeg',
-        caption: '05 / Ringkasan Pesanan & Keranjang — Kalkulasi harga otomatis dan pemilihan lokasi pengambilan'
-      },
-      {
-        src: 'WhatsApp Image 2026-11-12 at 14.50.31.jpeg',
-        caption: '06 / Section Keunggulan — Informasi nilai produk & standar kualitas kepada pelanggan'
-      },
-      {
-        src: 'WhatsApp Image 2026-11-12 at 14.50.32.jpeg',
-        caption: '07 / Section Testimoni Pelanggan — Ulasan pembeli terhadap produk Getuk Gondok'
-      },
-      {
-        src: 'WhatsApp Image 2026-11-12 at 14.50.33.jpeg',
-        caption: '08 / FAQ & Footer — Pertanyaan umum interaktif, jam operasional & tombol cepat WhatsApp'
-      },
-      {
-        src: 'Capture.png',
-        caption: '09 / Struktur Navigasi Katalog — Pemetaan alur klik dari header menu menuju katalog produk'
+        caption: '05 / Brand Identity — Logo asli Getuk Gondok Hj. Sri Rahayu'
       }
     ]
   },
@@ -56,32 +40,24 @@ const projectDetails = {
     quote: 'A useful system turns a pile of daily updates into one clear next move.',
     images: [
       {
-        src: 'Screenshot 2026-07-31 215621.png',
+        src: 'Gambar/Screenshot 2026-07-31 215621.png',
         caption: '01 / Dashboard Owner — Ringkasan bulanan, arus keuangan, persediaan & rekap otomatis'
       },
       {
-        src: 'Screenshot 2026-08-01 172221.png',
-        caption: '02 / Live Operational Overview & Owner Control Center'
+        src: 'Gambar/Screenshot 2026-07-31 215536.png',
+        caption: '02 / Owner Login — Sistem autentikasi akses pemilik via tautan email'
       },
       {
-        src: 'Screenshot 2026-07-31 215536.png',
-        caption: '03 / Owner Login — Sistem autentikasi akses pemilik via tautan email'
+        src: 'Gambar/Screenshot 2026-07-31 215703.png',
+        caption: '03 / Menu Barang — Tambah stok barang & pemantauan nilai persediaan'
       },
       {
-        src: 'Screenshot 2026-07-31 215703.png',
-        caption: '04 / Menu Barang — Tambah stok barang & pemantauan nilai persediaan'
+        src: 'Gambar/Screenshot 2026-07-31 215719.png',
+        caption: '04 / Menu Keuangan — Pencatatan pemasukan, pengeluaran & riwayat transaksi'
       },
       {
-        src: 'Screenshot 2026-07-31 215719.png',
-        caption: '05 / Menu Keuangan — Pencatatan pemasukan, pengeluaran & riwayat transaksi'
-      },
-      {
-        src: 'Screenshot 2026-07-31 215747.png',
-        caption: '06 / Menu Penggajian — Manajemen karyawan, pembayaran gaji & riwayat penggajian'
-      },
-      {
-        src: 'Screenshot 2026-07-31 212455.png',
-        caption: '07 / Financial Analytics & Metrics Dashboard UI'
+        src: 'Gambar/Screenshot 2026-07-31 215747 - Copy (2).png',
+        caption: '05 / Menu Penggajian — Manajemen karyawan, pembayaran gaji & riwayat penggajian'
       }
     ]
   },
@@ -226,35 +202,6 @@ document.querySelectorAll('.cert-filter-button').forEach((button) => {
   });
 });
 
-function applyImageWithFallback(imgElement, srcPath, onFailCallback) {
-  const extensions = ['.png', '.jpg', '.jpeg'];
-  const folders = ['', 'images/', 'img/', 'assets/'];
-  const basePath = srcPath.replace(/\.(png|jpe?g)$/i, '');
-  const candidates = [];
-
-  folders.forEach((folder) => {
-    candidates.push(folder + srcPath);
-    extensions.forEach((ext) => {
-      candidates.push(folder + basePath + ext);
-    });
-  });
-
-  const uniqueCandidates = [...new Set(candidates)];
-  let index = 0;
-
-  imgElement.onerror = () => {
-    index++;
-    if (index < uniqueCandidates.length) {
-      imgElement.src = encodeURI(uniqueCandidates[index]);
-    } else {
-      imgElement.onerror = null;
-      if (typeof onFailCallback === 'function') onFailCallback(srcPath);
-    }
-  };
-
-  imgElement.src = encodeURI(uniqueCandidates[0]);
-}
-
 function renderModalGallery(images) {
   if (!modalGallery || !modalActiveImg || !modalImgCaption || !modalGalleryThumbs) return;
 
@@ -269,11 +216,9 @@ function renderModalGallery(images) {
   modalCard?.classList.add('has-gallery');
 
   const showImage = (imgData) => {
+    modalActiveImg.src = encodeURI(imgData.src);
     modalActiveImg.alt = imgData.caption;
     modalImgCaption.textContent = imgData.caption;
-    applyImageWithFallback(modalActiveImg, imgData.src, (missingFile) => {
-      modalImgCaption.textContent = `${imgData.caption} — (Catatan: File "${missingFile}" belum dipindahkan ke folder yang sama dengan index.html)`;
-    });
   };
 
   showImage(images[0]);
@@ -285,8 +230,8 @@ function renderModalGallery(images) {
     thumbBtn.className = `modal-thumb-btn${index === 0 ? ' is-active' : ''}`;
 
     const thumbImg = document.createElement('img');
+    thumbImg.src = encodeURI(imgData.src);
     thumbImg.alt = imgData.caption;
-    applyImageWithFallback(thumbImg, imgData.src);
     thumbBtn.appendChild(thumbImg);
 
     thumbBtn.addEventListener('click', (event) => {
@@ -332,42 +277,3 @@ document.querySelectorAll('[data-open-project]').forEach((element) => {
 
 document.querySelectorAll('[data-open-cert]').forEach((button) => {
   button.addEventListener('click', () => {
-    populateAndOpenModal(certificateDetails[button.dataset.openCert]);
-  });
-});
-
-document.querySelectorAll('[data-close-modal]').forEach((element) => element.addEventListener('click', closeProject));
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && modal.classList.contains('is-open')) closeProject();
-});
-
-document.querySelector('.copy-email')?.addEventListener('click', async (event) => {
-  const email = event.currentTarget.dataset.email;
-  try {
-    await navigator.clipboard.writeText(email);
-    toast.textContent = `${email} copied to clipboard.`;
-    toast.classList.add('is-visible');
-    window.setTimeout(() => toast.classList.remove('is-visible'), 2200);
-  } catch {
-    window.location.href = `mailto:${email}`;
-  }
-});
-
-document.querySelector('#year').textContent = String(new Date().getFullYear());
-
-const glow = document.querySelector('.cursor-glow');
-window.addEventListener('pointermove', (event) => {
-  glow.style.left = `${event.clientX}px`;
-  glow.style.top = `${event.clientY}px`;
-});
-
-const sections = [...document.querySelectorAll('main section[id]')];
-const links = [...document.querySelectorAll('.nav-links a')];
-const activeSectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      links.forEach((link) => link.classList.toggle('is-current', link.getAttribute('href') === `#${entry.target.id}`));
-    }
-  });
-}, { rootMargin: '-35% 0px -55% 0px' });
-sections.forEach((section) => activeSectionObserver.observe(section));
