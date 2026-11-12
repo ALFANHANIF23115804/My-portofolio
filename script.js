@@ -17,10 +17,6 @@ const projectDetails = {
         caption: '02 / Katalog Produk — Fitur pencarian, filter kategori (Traditional, Premium, Box, Deluxe) & floating bar'
       },
       {
-        src: 'Gambar2/2026-05-20 (4).png',
-        caption: '03 / Tampilan E-Commerce & Katalog Produk Getuk Gondok'
-      },
-      {
         src: 'Gambar2/Capture.PNG',
         caption: '04 / Struktur Navigasi Katalog — Pemetaan alur klik dari header menu menuju katalog produk'
       },
