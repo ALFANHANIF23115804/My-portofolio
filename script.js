@@ -128,6 +128,21 @@ const projectDetails = {
 };
 
 const certificateDetails = {
+  cert0: {
+    kicker: 'Certificate / 00',
+    title: 'Magang di Bappeda Sleman',
+    description: 'Sertifikat telah mengikuti kegiatan magang di Badan Perencanaan Pembangunan Daerah Kabupaten Sleman pada 1 Agustus 2026 – 30 September 2026. Ditandatangani secara elektronik oleh Kepala Bappeda menggunakan sertifikat elektronik BSrE, BSSN.',
+    role: 'Bappeda Kab. Sleman',
+    focus: 'Internship / Public sector',
+    year: 'Aug–Sep 2026',
+    quote: 'Good planning turns public needs into something people can actually use.',
+    images: [
+      {
+        src: 'sertifikat-magang-bappeda-sleman.jpg',
+        caption: 'Sertifikat Magang — No. 400.14.5.4/029/2026 · 30 September 2026'
+      }
+    ]
+  },
   cert1: {
     kicker: 'Certificate / 01',
     title: 'Front-End Web Development',

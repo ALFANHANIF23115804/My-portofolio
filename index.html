@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script>document.documentElement.classList.add('js');</script>
-    <link rel="stylesheet" href="style.css?v=5" />
+    <link rel="stylesheet" href="style.css?v=6" />
   </head>
   <body>
     <div class="progress" aria-hidden="true"></div>
@@ -207,12 +207,29 @@
         </div>
 
         <div class="cert-filter-row reveal" role="tablist" aria-label="Filter certificates">
-          <button class="cert-filter-button is-active" type="button" data-cert-filter="all" role="tab" aria-selected="true">All <span>03</span></button>
+          <button class="cert-filter-button is-active" type="button" data-cert-filter="all" role="tab" aria-selected="true">All <span>04</span></button>
+          <button class="cert-filter-button" type="button" data-cert-filter="intern" role="tab" aria-selected="false">Internship <span>01</span></button>
           <button class="cert-filter-button" type="button" data-cert-filter="dev" role="tab" aria-selected="false">Web &amp; Software <span>02</span></button>
           <button class="cert-filter-button" type="button" data-cert-filter="data" role="tab" aria-selected="false">Data &amp; Systems <span>01</span></button>
         </div>
 
         <div class="cert-grid">
+          <article class="cert-card cert-card-featured reveal" data-cert-category="intern">
+            <button class="cert-preview" type="button" data-open-cert="cert0" aria-label="Lihat sertifikat magang Bappeda Sleman">
+              <img src="sertifikat-magang-bappeda-sleman.jpg" loading="lazy" alt="Sertifikat magang Alfan Hanif Dwi Putra di Bappeda Kabupaten Sleman" />
+            </button>
+            <div class="cert-top">
+              <span class="cert-badge">Internship</span>
+              <span class="cert-year">Aug–Sep 2026</span>
+            </div>
+            <h3>Magang di <em>Bappeda Sleman</em></h3>
+            <p class="cert-issuer">Badan Perencanaan Pembangunan Daerah Kab. Sleman</p>
+            <p class="cert-desc">Program magang 1 Agustus – 30 September 2026, dibuktikan dengan sertifikat bertanda tangan elektronik (BSrE, BSSN) No. 400.14.5.4/029/2026.</p>
+            <div class="cert-footer">
+              <button class="text-link" type="button" data-open-cert="cert0">View certificate <span>↗</span></button>
+            </div>
+          </article>
+
           <article class="cert-card reveal" data-cert-category="dev">
             <div class="cert-top">
               <span class="cert-badge">Front-End</span>
@@ -334,6 +351,6 @@
     </div>
 
     <div class="toast" role="status" aria-live="polite">Email copied to clipboard.</div>
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=7"></script>
   </body>
 </html>
