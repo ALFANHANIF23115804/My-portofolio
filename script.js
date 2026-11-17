@@ -387,6 +387,12 @@ window.addEventListener('pointermove', (event) => {
   glow.style.top = `${event.clientY}px`;
 });
 
+const progressBar = document.querySelector('.progress');
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+}, { passive: true });
+
 const sections = [...document.querySelectorAll('main section[id]')];
 const links = [...document.querySelectorAll('.nav-links a')];
 const activeSectionObserver = new IntersectionObserver((entries) => {
